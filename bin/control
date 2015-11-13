@@ -28,13 +28,16 @@ function build {
 
 function tidy {
     cd $OPENSHIFT_REPO_DIR
-    mvn clean -Popenshift 
+    mvn clean -Popenshift
     rm -fr "$OPENSHIFT_HOMEDIR"/.m2/*
 }
 
 function catchall {
     echo ""
 }
+
+export JAVA_HOME=/etc/alternatives/java_sdk_1.8.0
+export PATH=$JAVA_HOME/bin:$PATH
 
 case "$1" in
   start)       start ;;
