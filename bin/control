@@ -23,7 +23,7 @@ function build {
     unset GIT_WORK_TREE
 
     cd $OPENSHIFT_REPO_DIR
-    mvn install -Popenshift -DskipTests=true
+    mvn compile -Popenshift -DskipTests=true
 }
 
 function tidy {
