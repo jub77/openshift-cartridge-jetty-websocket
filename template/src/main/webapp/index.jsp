@@ -24,7 +24,6 @@
     margin-top: 5px;
     overflow: hidden;
 }
-
 </style>
 </head>
 <body onload="init">
@@ -36,11 +35,10 @@
 
 <span class="warning">Behold websockets</span>
 
-
 </body>
-<script language="javascript" type="text/javascript">
+<script type="text/javascript">
 
-  var openshiftWebSocketPort = 8000; // Or use 8443 for wss
+  var openshiftWebSocketPort = ${pageContext.request.serverPort}; //8000; // Or use 8443 for wss
   var wsUri = "ws://" + window.location.hostname + ":" + openshiftWebSocketPort + "/ws";
   var output;
 
@@ -102,7 +100,5 @@
   }else{
 	  window.attachEvent("onload", init);
   }
-  
-
 </script>
 </html>

@@ -21,7 +21,7 @@
         <activeByDefault>true</activeByDefault>
       </activation>
       <properties>
-        <jetty.port>8080</jetty.port>
+        <jetty.port>8000</jetty.port>
         <jetty.host>0.0.0.0</jetty.host>
       </properties>
     </profile>
@@ -30,44 +30,48 @@
     <finalName>{APP_NAME}</finalName>
     <plugins>
       <plugin>
-        <!-- This plugin is needed for the servlet example -->
-        <groupId>org.mortbay.jetty</groupId>
+        <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-maven-plugin</artifactId>
         <version>${jetty.version}</version>
         <configuration>
           <scanIntervalSeconds>10</scanIntervalSeconds>
-          <connectors>
-            <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
-              <port>${jetty.port}</port>
-              <host>${jetty.host}</host>
-              <maxIdleTime>60000</maxIdleTime>
-            </connector>
-          </connectors>
-          <webAppConfig>
+          <httpConnector>
+            <port>${jetty.port}</port>
+            <host>${jetty.host}</host>
+          </httpConnector>
+          <webApp>
             <contextPath>/</contextPath>
-            <descriptor>${basedir}/src/main/webapp/web.xml</descriptor>
-          </webAppConfig>
+          </webApp>
+          <stopPort>9966</stopPort>
+          <stopKey>stop-server</stopKey>
+          <stopWait>2</stopWait>
         </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.3</version>
         <configuration>
           <fork>true</fork>
           <meminitial>128m</meminitial>
           <maxmem>512m</maxmem>
-          <source>1.6</source>
-          <target>1.6</target>
           <minmemory>256m</minmemory>
           <maxmemory>2048m</maxmemory>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resource-plugin</artifactId>
+        <version>2.7</version>
+       </plugin>
     </plugins>
   </build>
   <properties>
-    <jetty.version>8.1.0.v20120127</jetty.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <jetty.version>9.3.5.v20151012</jetty.version>
   </properties>
-
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -81,8 +85,8 @@
       <version>${jetty.version}</version>
     </dependency>
     <dependency>
-      <groupId>org.eclipse.jetty</groupId>
-      <artifactId>jetty-websocket</artifactId>
+      <groupId>org.eclipse.jetty.websocket</groupId>
+      <artifactId>websocket-server</artifactId>
       <version>${jetty.version}</version>
     </dependency>
   </dependencies>
