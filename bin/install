@@ -1,6 +1,9 @@
 #!/bin/bash
 
-# maven keeps per-user config in ~/.m2 
+# maven keeps per-user config in ~/.m2
 # Create files/directories, change ownership and SELinux file security context.
+
+sed -i "s/{APP_NAME}/${OPENSHIFT_APP_NAME}/g" ${OPENSHIFT_JETTY_DIR}/template/pom.xml
+
 mkdir "$OPENSHIFT_HOMEDIR"/.m2
 chown $OPENSHIFT_GEAR_UUID.$OPENSHIFT_GEAR_UUID -R "$OPENSHIFT_HOMEDIR"/.m2
