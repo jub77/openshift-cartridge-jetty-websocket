@@ -75,3 +75,6 @@ Endpoints:
       - Frontend:      "/health"
         Backend:       ""
         Options:       { health: true }
+  - Private-IP-Name:   IP
+    Private-Port-Name: PORT_CONTROL
+    Private-Port:      9966
