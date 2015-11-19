@@ -76,5 +76,5 @@ Endpoints:
         Backend:       ""
         Options:       { health: true }
   - Private-IP-Name:   IP
-    Private-Port-Name: PORT_CONTROL
+    Private-Port-Name: CONTROL_PORT
     Private-Port:      9966
