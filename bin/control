@@ -2,7 +2,7 @@
 
 function start {
     cd $OPENSHIFT_REPO_DIR
-    nohup mvn8 -Popenshift jetty:run >> $OPENSHIFT_JETTY_DIR/logs/jetty.log 2>&1 &
+    nohup ${OPENSHIFT_JETTY_DIR}/bin/mvn8 -Popenshift jetty:run >> $OPENSHIFT_JETTY_DIR/logs/jetty.log 2>&1 &
 }
 
 function stop {
@@ -23,12 +23,12 @@ function build {
     unset GIT_WORK_TREE
 
     cd $OPENSHIFT_REPO_DIR
-    mvn8 compile -Popenshift -DskipTests=true
+    ${OPENSHIFT_JETTY_DIR}/bin/mvn8 compile -Popenshift -DskipTests=true
 }
 
 function tidy {
     cd $OPENSHIFT_REPO_DIR
-    mvn8 clean -Popenshift
+    ${OPENSHIFT_JETTY_DIR}/bin/mvn8 clean -Popenshift
     rm -fr "$OPENSHIFT_HOMEDIR"/.m2/*
 }
 
