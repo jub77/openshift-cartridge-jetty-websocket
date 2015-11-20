@@ -64,22 +64,22 @@ Subscribes:
     Type: "ENV:NET_TCP:nosqldb:connection-info"
     Required : false
 Endpoints:
+  - Private-IP-Name:   IP
+    Private-Port-Name: CONTROL_PORT
+    Private-Port:      9966
   - Private-IP-Name:     IP
     Private-Port-Name:   PORT
     Private-Port:        8080
     Public-Port-Name:    PROXY_PORT
     Protocols:
-    - http
-    - ws
+      - http
+      - ws
     Mappings:
-    - Frontend: ''
-      Backend: ''
-      Options:
-        websocket: true
-    - Frontend: /health
-      Backend: ''
-      Options:
-        health: true
-  - Private-IP-Name:   IP
-    Private-Port-Name: CONTROL_PORT
-    Private-Port:      9966
+      - Frontend: ''
+        Backend: ''
+        Options:
+          websocket: true
+      - Frontend: /health
+        Backend: ''
+        Options:
+          health: true

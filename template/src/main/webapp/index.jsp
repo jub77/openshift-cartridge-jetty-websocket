@@ -38,7 +38,7 @@
 </body>
 <script type="text/javascript">
 
-  var openshiftWebSocketPort = ${pageContext.request.serverPort}; //8000; // Or use 8443 for wss
+  var openshiftWebSocketPort = 8000; // Or use 8443 for wss
   var wsUri = "ws://" + window.location.hostname + ":" + openshiftWebSocketPort + "/ws";
   var output;
 
@@ -85,7 +85,7 @@
 
   function doSend(message)
   {
-    writeToScreen("SENT: " + message); 
+    writeToScreen("SENT: " + message);
     websocket.send(message);
   }
 
