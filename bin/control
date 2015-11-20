@@ -1,12 +1,21 @@
 #!/bin/bash -e
 
 function start {
+    echo "starting jetty"
     cd $OPENSHIFT_REPO_DIR
     nohup ${OPENSHIFT_JETTY_DIR}/bin/mvn8 -Popenshift jetty:run >> $OPENSHIFT_JETTY_DIR/logs/jetty.log 2>&1 &
+
+    PROCESS_ID=$!
+
+    echo $PROCESS_ID > $JETTY_PID_FILE
 }
 
 function stop {
-    killall java || true
+    echo "stopping jetty"
+
+    pid=$(cat $JETTY_PID_FILE);
+
+    kill ${pid}
 }
 
 function restart {
@@ -38,6 +47,8 @@ function catchall {
 
 export JAVA_HOME=/etc/alternatives/java_sdk_1.8.0
 export PATH=$JAVA_HOME/bin:$PATH
+
+JETTY_PID_FILE="${OPENSHIFT_JETTY_DIR}/jetty.pid"
 
 case "$1" in
   start)       start ;;

@@ -13,7 +13,6 @@
       <properties>
         <jetty.port>${env.OPENSHIFT_JETTY_PORT}</jetty.port>
         <jetty.host>${env.OPENSHIFT_JETTY_IP}</jetty.host>
-        <jetty.port.control>${env.OPENSHIFT_JETTY_CONTROL_PORT}</jetty.port.control>
       </properties>
     </profile>
     <profile>
@@ -24,7 +23,6 @@
       <properties>
         <jetty.port>8000</jetty.port>
         <jetty.host>0.0.0.0</jetty.host>
-        <jetty.port.control>9966</jetty.port.control>
       </properties>
     </profile>
   </profiles>
@@ -44,9 +42,6 @@
           <webApp>
             <contextPath>/</contextPath>
           </webApp>
-          <stopPort>${jetty.port.control}</stopPort>
-          <stopKey>stop-server</stopKey>
-          <stopWait>2</stopWait>
         </configuration>
       </plugin>
       <plugin>
